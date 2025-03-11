@@ -5,25 +5,16 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 
 const Product = ({ item, updateTotal }) => {
   const [quantity, setQuantity] = useState(0);
-  const [total, setTotal] = useState(0);
 
   const increment = () => {
-    setQuantity((prevQuantity) => {
-      const newQuantity = prevQuantity + 1;
-      setTotal(item.price * newQuantity);
-      updateTotal((prevTotal) => prevTotal + item.price);
-      return newQuantity;
-    });
+    setQuantity((prevQuantity) => prevQuantity + 1);
+    updateTotal((prevTotal) => prevTotal + item.price);
   };
 
   const decrement = () => {
     if (quantity > 0) {
-      setQuantity((prevQuantity) => {
-        const newQuantity = prevQuantity - 1;
-        setTotal(item.price * newQuantity);
-        updateTotal((prevTotal) => prevTotal - item.price);
-        return newQuantity;
-      });
+      setQuantity((prevQuantity) => prevQuantity - 1);
+      updateTotal((prevTotal) => prevTotal - item.price);
     }
   };
 

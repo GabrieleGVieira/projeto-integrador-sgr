@@ -1,3 +1,4 @@
+"use client";
 const Total = ({ total }) => {
   return (
     <div className="bg-brown-200 p-4 rounded-md">

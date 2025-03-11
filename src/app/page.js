@@ -1,16 +1,21 @@
 "use client";
-import { useState, useEffect } from "react";
-import Product from "../components/product";
-import Total from "../components/total";
+import { useState, useEffect, useCallback } from "react";
+import ProductList from "../components/product-list";
 
 export default function Home() {
   const [total, setTotal] = useState(0);
   const [products, setProducts] = useState([]);
 
-  const updateTotal = (newTotal) => {
-    setTotal(newTotal);
-  };
+  
+  const updateTotal = useCallback((updateFunction) => {
+    setTotal((prevTotal) => {
+      const newTotal = updateFunction(prevTotal);
+      if (newTotal !== prevTotal) return newTotal;
+      return prevTotal;
+    });
+  }, []);
 
+  
   const fetchProducts = async () => {
     try {
       const response = await fetch("/api/products");
@@ -18,7 +23,6 @@ export default function Home() {
         throw new Error("Erro ao carregar os produtos");
       }
       const data = await response.json();
-      console.log(data);
       setProducts(data);
     } catch (error) {
       console.error("Erro ao carregar os produtos", error);
@@ -26,18 +30,21 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchProducts();
+    if (typeof window !== "undefined") {
+      fetchProducts();
+    }
   }, []);
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Menu</h1>
       <div className="mb-4">
-        {products.map((item) => (
-          <Product key={item.id} item={item} updateTotal={updateTotal} />
-        ))}
+        <ProductList
+          products={products}
+          updateTotal={updateTotal}
+          total={total}
+        />
       </div>
-      <Total total={total} />
     </div>
   );
 }
