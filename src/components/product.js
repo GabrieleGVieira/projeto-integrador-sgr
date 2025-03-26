@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const Product = ({ item, updateTotal }) => {
+const Product = ({ item, updateTotal, updateOrder, resetTrigger }) => {
   const [quantity, setQuantity] = useState(0);
 
   const increment = () => {
@@ -17,6 +17,24 @@ const Product = ({ item, updateTotal }) => {
       updateTotal((prevTotal) => prevTotal - item.price);
     }
   };
+
+  useEffect(() => {
+    if (quantity >= 0) {
+      const unitPrice = item.price;
+      const totalPrice = quantity * unitPrice;
+
+      updateOrder({
+        productId: item.id,
+        quantity,
+        unitPrice,
+        totalPrice,
+      });
+    }
+  }, [quantity, item.id, item.price, updateOrder]);
+
+  useEffect(() => {
+    setQuantity(0);
+  }, [resetTrigger]);
 
   return (
     <div className="flex items-center justify-between py-2">
