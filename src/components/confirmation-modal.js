@@ -20,7 +20,7 @@ const ConfirmationModal = ({ isOpen, onClose, message, isSuccess }) => {
             <XCircle className="text-red-600 w-12 h-12 mb-2" />
           )}
           <DialogTitle>
-            {isSuccess ? "Venda Concluída!" : "Erro ao Concluir Venda"}
+            {isSuccess ? "Concluído!" : "Erro ao Concluir"}
           </DialogTitle>
           <DialogDescription>{message}</DialogDescription>
         </DialogHeader>
