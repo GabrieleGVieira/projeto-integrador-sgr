@@ -12,14 +12,8 @@ import {
 } from "../components/ui/dialog";
 
 import { Label } from "../components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../components/ui/popover";
 
-import { Checkbox } from "../components/ui/checkbox";
-import { ChevronDown } from "lucide-react";
+import MultiSelectDropdown from "./multi-select-dropdown";
 
 export default function FiltersModal({ isOpen, onClose, products, events, downloadExcel, downloading}) {
   const [product, setProductSelected] = useState([]);
@@ -110,58 +104,20 @@ export default function FiltersModal({ isOpen, onClose, products, events, downlo
         <form>
           <div className="grid w-full items-center gap-4">
             <div>
-              <Label htmlFor="framework">Produto</Label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="w-[200px] flex justify-between"
-                  >
-                    {buttonProductLabel}
-                    <ChevronDown className="w-4 h-4 ml-2" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent portalled={false} className="w-[200px] p-2">
-                  <div className="max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
-                    {products.map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex items-center justify-between p-2 rounded-md hover:bg-accent cursor-pointer"
-                        onClick={() => handleProductSelection(item.id)}
-                      >
-                        <span>{item.name}</span>
-                        <Checkbox checked={product.includes(item.id)} />
-                      </div>
-                    ))}
-                  </div>
-                </PopoverContent>
-              </Popover>
+              <MultiSelectDropdown
+                label="Produto"
+                options={products}
+                selected={product}
+                onSelect={handleProductSelection}
+              />
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="framework">Evento</Label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="w-[200px] flex justify-between"
-                  >
-                    {buttonEventLabel}
-                    <ChevronDown className="w-4 h-4 ml-2" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-2">
-                  {events.map((item) => (
-                    <div
-                      key={item.id}
-                      className="flex items-center justify-between p-2 rounded-md hover:bg-accent cursor-pointer"
-                      onClick={() => handleEventSelection(item.id)}
-                    >
-                      <span>{item.name}</span>
-                      <Checkbox checked={event.includes(item.id)} />
-                    </div>
-                  ))}
-                </PopoverContent>
-              </Popover>
+              <MultiSelectDropdown
+                label="Evento"
+                options={events}
+                selected={event}
+                onSelect={handleEventSelection}
+              />
             </div>
             <div>
               <Label htmlFor="framework">Data do Evento</Label>
