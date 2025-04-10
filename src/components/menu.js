@@ -4,11 +4,10 @@ import ProductList from "./product-list";
 import Footer from "./footer";
 import PixModal from "./pix-modal";
 import ConfirmationModal from "./confirmation-modal";
+import useData from "../hooks/data";
 
 export default function Menu() {
   const [total, setTotal] = useState(0);
-  const [products, setProducts] = useState([]);
-  const [event, setEvent] = useState(null);
   const [orders, setOrders] = useState([]);
   const [resetTrigger, setResetTrigger] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
@@ -16,6 +15,15 @@ export default function Menu() {
   const [modalMessage, setModalMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+ const { products, events } = useData({
+   loadProducts: true,
+   loadEvents: true,
+ });
+  
+  const activeEvent = events?.find?.((e) => e.active);
+
+
 
   const updateTotal = useCallback((updateFunction) => {
     setTotal((prevTotal) => {
@@ -45,44 +53,6 @@ export default function Menu() {
     });
   }, []);
 
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch("/api/products");
-      if (!response.ok) {
-        throw new Error("Erro ao carregar os produtos");
-      }
-      const data = await response.json();
-      setProducts(data);
-    } catch (error) {
-      console.error("Erro ao carregar os produtos", error);
-    }
-  };
-
-  const fetchEvent = async () => {
-    try {
-      const response = await fetch("/api/events");
-      if (!response.ok) {
-        throw new Error("Erro ao carregar evento");
-      }
-      const events = await response.json();
-      for (const event of events) {
-        if (event.active) {
-          setEvent(event);
-          break
-        }
-      }
-      
-    } catch (error) {
-      console.error("Erro ao carregar evento", error);
-    }
-  };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      fetchProducts();
-      fetchEvent();
-    }
-  }, []);
 
   const saveOrders = async (orders, saleId) => {
     const updatedOrders = orders.map((order) => ({ ...order, saleId }));
@@ -154,7 +124,7 @@ export default function Menu() {
 
   return (
     <div className="container mx-auto p-4 pb-24 min-h-screen flex flex-col justify-between">
-      <h1 className="text-2xl font-bold mb-4">{event ? event.name : "Menu"}</h1>
+      <h1 className="text-2xl font-bold mb-4">{activeEvent?.name ?? "Menu"}</h1>
       <div className="flex-grow mb-24">
         <ProductList
           products={products}
@@ -170,7 +140,7 @@ export default function Menu() {
         orders={orders}
         handleCompleteSale={handleCompleteSale}
         handleGeneratePix={handleGeneratePix}
-        event={event}
+        event={activeEvent}
         isLoading={isLoading}
       />
       <PixModal
