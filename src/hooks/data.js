@@ -34,6 +34,9 @@ export default function useData(options = {}) {
   const reloadProducts = () => {
     fetchResource("/api/products", setProducts);
   };
+  const reloadEvents = () => {
+    fetchResource("/api/events", setEvents);
+  };
 
-  return { products, events, sales, orders, reloadProducts };
+  return { products, events, sales, orders, reloadProducts, reloadEvents };
 }

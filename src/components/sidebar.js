@@ -45,13 +45,13 @@ export default function Sidebar() {
           >
             Produtos
           </Button>
-          {/* <Button
+          <Button
             variant="outline"
             className="w-full"
-            onClick={() => navigateTo("/configuracoes")}
+            onClick={() => navigateTo("/eventos")}
           >
-            Adicionar Eventos
-          </Button> */}
+           Eventos
+          </Button>
         </nav>
       </SheetContent>
     </Sheet>
