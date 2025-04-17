@@ -103,7 +103,6 @@ export default function EventsTable({ events, reloadEvents }) {
         setIsSuccess(true);
         setModalMessage("Evento ativado com sucesso");
       } else {
-          console.log(response)
         setIsSuccess(false);
         setModalMessage("Erro ao tentar ativar o evento");
       }

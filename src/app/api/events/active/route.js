@@ -4,7 +4,6 @@ import db from "../../../../lib/prisma"
 export async function PATCH(req) {
   try {
     const { id } = await req.json();
-    console.log(id)
 
     const updatedEvent = await db.event.update({
       where: { id },
