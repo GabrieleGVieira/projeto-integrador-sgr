@@ -14,6 +14,7 @@ model Product {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   category  String
+  active    Boolean  @default(true)
   orders    Order[]
 }
 
@@ -23,7 +24,7 @@ model Event {
   description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  active      Boolean
+  active      Boolean  @default(false)
   sales       Sale[]
 }
 

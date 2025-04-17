@@ -3,7 +3,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Limpando o banco de dados
   await prisma.order.deleteMany();
   await prisma.sale.deleteMany();
   await prisma.product.deleteMany();
@@ -25,22 +24,25 @@ async function main() {
        },
      });
 
-
-  // Criando produtos típicos da festa junina
   const produtos = await prisma.product.createMany({
     data: [
-      { name: "Bolinho Caipira", price: 2.5, category: "comidas" },
-      { name: "Milho Verde", price: 5.0, category: "comidas" },
-      { name: "Pastel", price: 4.0, category: "comidas" },
-      { name: "Lanche Natural", price: 6.0, category: "comidas" },
-      { name: "Buraco Quente", price: 3.0, category: "comidas" },
-      { name: "Água", price: 3.0, category: "bebidas" },
-      { name: "Suco", price: 3.0, category: "bebidas" },
-      { name: "Refrigerante", price: 3.0, category: "bebidas" },
-      { name: "Picolé", price: 3.0, category: "doces" },
-      { name: "Cupcake", price: 3.0, category: "doces" },
-      { name: "Maçã do Amor", price: 3.0, category: "doces" },
-      { name: "Brincadeiras", price: 3.0, category: "outros" },
+      {
+        name: "Bolinho Caipira",
+        price: 2.5,
+        category: "Comidas",
+        active: true,
+      },
+      { name: "Milho Verde", price: 5.0, category: "Comidas", active: true },
+      { name: "Pastel", price: 4.0, category: "Comidas", active: true },
+      { name: "Lanche Natural", price: 6.0, category: "Comidas", active: true },
+      { name: "Buraco Quente", price: 7.0, category: "Comidas", active: true },
+      { name: "Água", price: 3.0, category: "Bebidas", active: true },
+      { name: "Suco", price: 5.0, category: "Bebidas", active: true },
+      { name: "Refrigerante", price: 7.0, category: "Bebidas", active: true },
+      { name: "Picolé", price: 2.0, category: "Doces", active: true },
+      { name: "Cupcake", price: 2.5, category: "Doces", active: true },
+      { name: "Maçã do Amor", price: 3.0, category: "Doces", active: true },
+      { name: "Brincadeiras", price: 3.0, category: "Outros", active: true },
     ],
   });
     
