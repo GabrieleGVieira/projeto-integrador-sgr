@@ -14,7 +14,7 @@ import ConfirmationModal from "./confirmation-modal";
 import { FiCheckCircle, FiXCircle } from "react-icons/fi";
 import CreateProductModal from "./create-product-modal";
 
-export default function Products({ products, reloadProducts }) {
+export default function ProductsTable({ products, reloadProducts }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
