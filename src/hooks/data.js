@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useDashboardData(options = {}) {
+export default function useData(options = {}) {
   const {
     loadProducts = false,
     loadEvents = false,
@@ -31,5 +31,9 @@ export default function useDashboardData(options = {}) {
     }
   };
 
-  return { products, events, sales, orders };
+  const reloadProducts = () => {
+    fetchResource("/api/products", setProducts);
+  };
+
+  return { products, events, sales, orders, reloadProducts };
 }

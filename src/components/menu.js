@@ -22,6 +22,7 @@ export default function Menu() {
  });
   
   const activeEvent = events?.find?.((e) => e.active);
+  const activeProducts = products?.filter((e) => e.active === true);
 
 
 
@@ -127,7 +128,7 @@ export default function Menu() {
       <h1 className="text-2xl font-bold mb-4">{activeEvent?.name ?? "Menu"}</h1>
       <div className="flex-grow mb-24">
         <ProductList
-          products={products}
+          products={activeProducts}
           updateTotal={updateTotal}
           total={total}
           updateOrder={updateOrder}

@@ -38,14 +38,14 @@ export default function Sidebar() {
           >
             Relatórios
           </Button>
-          {/* <Button
+          <Button
             variant="outline"
             className="w-full"
             onClick={() => navigateTo("/produtos")}
           >
-            Adicionar Produtos
+            Produtos
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             className="w-full"
             onClick={() => navigateTo("/configuracoes")}
