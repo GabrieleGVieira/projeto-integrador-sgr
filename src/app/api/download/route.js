@@ -99,7 +99,7 @@ export async function POST(req) {
       },
     });
   } catch (error) {
-    console.error("Erro ao gerar Excel:", error);
+    console.log("Erro ao gerar Excel:", error);
     return new NextResponse(JSON.stringify({ error: error.message }), {
       status: 500,
     });

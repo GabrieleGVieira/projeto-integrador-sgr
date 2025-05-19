@@ -77,7 +77,7 @@ export default function EventsTable({ events, reloadEvents }) {
         setModalMessage("Erro ao tentar criar o evento");
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
       setIsSuccess(false);
       setModalMessage("Erro ao tentar criar o evento");
     } finally {

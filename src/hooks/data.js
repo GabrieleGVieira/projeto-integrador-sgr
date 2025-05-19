@@ -27,7 +27,7 @@ export default function useData(options = {}) {
       const data = await res.json();
       setState(data);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 

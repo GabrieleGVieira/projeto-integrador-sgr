@@ -77,7 +77,7 @@ const handleSaveCreate = async (newProduct) => {
       setModalMessage("Erro ao tentar criar o produto");
     }
   } catch (error) {
-    console.error(error);
+    console.log(error);
     setIsSuccess(false); 
     setModalMessage("Erro ao tentar criar o produto"); 
   } finally {

@@ -41,7 +41,7 @@ export default function Reports({ products, events, sales, orders }) {
     } catch (error) {
       setIsSuccess(false);
       setModalMessage("Ocorreu um erro ao baixar relatório.");
-      console.error(error);
+      console.log(error);
     } finally {
       setIsDownloading(false);
       setIsFiltersModalOpen(false);

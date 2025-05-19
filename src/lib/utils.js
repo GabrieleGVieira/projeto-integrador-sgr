@@ -123,7 +123,7 @@ const generatePixQRCode = (
         return qrcode;
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
       });
   }
 

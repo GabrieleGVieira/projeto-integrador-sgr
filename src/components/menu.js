@@ -69,7 +69,7 @@ export default function Menu() {
         throw new Error("Erro ao salvar pedidos");
       }
     } catch (error) {
-      console.error("Erro ao salvar pedidos", error);
+      console.log("Erro ao salvar pedidos", error);
     }
   };
 
@@ -99,7 +99,7 @@ export default function Menu() {
       setIsSuccess(false);
       setModalMessage("Ocorreu um erro ao salvar a venda e os pedidos.");
       setIsModalOpen(true);
-      console.error("Erro ao salvar vendas", error);
+      console.log("Erro ao salvar vendas", error);
     }
   };
 
@@ -113,7 +113,7 @@ export default function Menu() {
       setTotal(0);
       setResetTrigger((prev) => !prev);
     } catch (error) {
-      console.error("Erro ao salvar vendas", error);
+      console.log("Erro ao salvar vendas", error);
     } finally {
       setIsLoading(false);
     }

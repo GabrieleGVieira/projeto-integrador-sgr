@@ -6,7 +6,7 @@ export async function GET() {
 
     return new Response(JSON.stringify(events), { status: 200 });
   } catch (error) {
-    console.error("Erro ao buscar evento:", error);
+    console.log("Erro ao buscar evento:", error);
     return new Response(
       JSON.stringify({
         error: error.message || "Erro desconhecido",

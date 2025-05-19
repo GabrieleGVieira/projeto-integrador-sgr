@@ -14,7 +14,7 @@ export async function POST(request) {
       status: 200,
     });
   } catch (error) {
-    console.error("Erro ao salvar vendas", error);
+    console.log("Erro ao salvar vendas", error);
     return new Response(
       JSON.stringify({
         error: error.message || "Erro desconhecido",
@@ -30,7 +30,7 @@ export async function GET() {
     const sales = await db.sale.findMany();
     return new Response(JSON.stringify(sales), { status: 200 });
   } catch (error) {
-    console.error("Erro ao buscar vendas:", error);
+    console.log("Erro ao buscar vendas:", error);
     return new Response(
       JSON.stringify({
         error: error.message || "Erro desconhecido",

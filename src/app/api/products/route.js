@@ -5,7 +5,7 @@ export async function GET() {
     const products = await db.product.findMany();
     return new Response(JSON.stringify(products), { status: 200 });
   } catch (error) {
-    console.error("Erro ao buscar produtos aqui:", error);
+    console.log("Erro ao buscar produtos aqui:", error);
     return new Response(
       JSON.stringify({
         error: error.message || "Erro desconhecido",
@@ -80,7 +80,7 @@ export async function POST(req) {
 
     return new Response(JSON.stringify(newProduct), { status: 201 });
   } catch (error) {
-    console.error("Erro ao criar produto:", error);
+    console.log("Erro ao criar produto:", error);
     return new Response(
       JSON.stringify({
         error: error.message || "Erro desconhecido",
