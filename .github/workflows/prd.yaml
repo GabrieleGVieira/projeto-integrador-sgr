@@ -27,6 +27,9 @@ jobs:
        
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        
+      - name: Generate Prisma Client for multiple targets
+        run: npx prisma generate --binary-targets native rhel-openssl-3.0.x
 
       - name: Run Prisma Migrations
         env:
